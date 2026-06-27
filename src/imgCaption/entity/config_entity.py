@@ -11,23 +11,39 @@ class DataIngestionConfig:
 
 
 @dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+    images_dir: Path
+    captions_file: Path
+    train_img_id_path: Path
+    val_img_id_path: Path
+    test_img_id_path: Path
+    train_imagesid_captions_path: Path
+    val_imagesid_captions_path: Path
+    test_imagesid_captions_path: Path
+
+    TRAIN_SPLIT: float
+    TEST_SPLIT: float
+    RANDOM_STATE: int
+
+
+@dataclass(frozen=True)
 class PrepareBaseModelConfig:
     root_dir: Path
-    base_model_path: Path           # ResNet50 encoder saved here
-    updated_base_model_path: Path   # Full encoder+decoder model saved here
+    base_model_path: Path           
+    updated_base_model_path: Path   
 
-    # ResNet50 Encoder params
-    params_image_size: list         # e.g. [224, 224, 3]
-    params_weights: str             # "imagenet"
-    params_include_top: bool        # False (we remove classification head)
-    params_pooling: str
+    IMAGE_SIZE: list         
+    WEIGHTS: str            
+    INCLUDE_TOP: bool        
+    POOLING: str
 
-    # LSTM Decoder params
-    params_vocab_size: int          # total unique words in captions
-    params_max_length: int          # max caption length (e.g. 35)
-    params_embedding_dim: int       # word embedding size (e.g. 256)
-    params_units: int               # LSTM hidden units (e.g. 512)
-    params_dropout: float           # dropout rate (e.g. 0.5)
+    CNN_DIM: int
+    VOCAB_SIZE: int          
+    MAX_LENGTH: int          
+    EMBEDDING_DIM: int       
+    LSTM_UNITS: int              
+    DROPOUT: float          
+    LEARNING_RATE: float
 
-    # Training params (used later but defined here for MLflow tracking)
-    params_learning_rate: float 
+    CLIPNORM : float
