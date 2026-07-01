@@ -15,6 +15,7 @@ class DataTransformationConfig:
     root_dir: Path
     images_dir: Path
     captions_file: Path
+    tokenizer_path: Path
     train_img_id_path: Path
     val_img_id_path: Path
     test_img_id_path: Path

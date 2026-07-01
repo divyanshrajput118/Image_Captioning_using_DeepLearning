@@ -7,20 +7,29 @@ data_ingestion:
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
 
+data_transformation:
+  root_dir: artifacts/data_transformation
+  images_dir: artifacts/data_ingestion/Images
+  captions_file: artifacts/data_ingestion/captions.txt
+  tokenizer_path: artifacts/data_transformation/model_tokenizer.pkl
+  train_img_id_path: artifacts/data_transformation/train_ids.txt
+  test_img_id_path: artifacts/data_transformation/test_ids.txt
+  train_imagesid_captions_path: artifacts/data_transformation/train_imagesid_captions.json
+  test_imagesid_captions_path: artifacts/data_transformation/test_imagesid_captions.json
+
 
 prepare_base_model:
   root_dir: artifacts/prepare_base_model
   base_model_path: artifacts/prepare_base_model/base_model.h5
   updated_base_model_path: artifacts/prepare_base_model/base_model_updated.h5
 
-
-data_transformation:
-  root_dir: artifacts/data_transformation
+model_trainer:
+  root_dir: artifacts/training
+  base_model_path: artifacts/prepare_base_model/base_model.h5   
+  updated_base_model_path: artifacts/prepare_base_model/base_model_updated.h5
+  tokenizer_path: artifacts/data_transformation/model_tokenizer.pkl
   images_dir: artifacts/data_ingestion/Images
-  captions_file: artifacts/data_ingestion/captions.txt
   train_img_id_path: artifacts/data_transformation/train_ids.txt
-  val_img_id_path: artifacts/data_transformation/val_ids.txt
-  test_img_id_path: artifacts/data_transformation/test_ids.txt
   train_imagesid_captions_path: artifacts/data_transformation/train_imagesid_captions.json
-  val_imagesid_captions_path: artifacts/data_transformation/val_imagesid_captions.json
-  test_imagesid_captions_path: artifacts/data_transformation/test_imagesid_captions.json
+  trained_model_path: artifacts/training/model.h5
+

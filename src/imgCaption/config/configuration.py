@@ -37,23 +37,23 @@ class ConfigurationManager:
         config = self.config.data_transformation
         params = self.params.data_transformation_params
 
-        data_transformation_config = DataTransformationConfig(
-                                                root_dir=config.root_dir,
-                                                images_dir=config.images_dir,
-                                                captions_file=config.captions_file,
-                                                train_img_id_path=config.train_img_id_path,
-                                                val_img_id_path=config.val_img_id_path,
-                                                test_img_id_path=config.test_img_id_path,
-                                                train_imagesid_captions_path=config.train_imagesid_captions_path,
-                                                val_imagesid_captions_path=config.val_imagesid_captions_path,
-                                                test_imagesid_captions_path=config.test_imagesid_captions_path,
-                                                TRAIN_SPLIT=params.TRAIN_SPLIT,
-                                                TEST_SPLIT=params.TEST_SPLIT,
-                                                RANDOM_STATE=params.RANDOM_STATE
-                                                              )
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(root_dir=config.root_dir,
+                                                              images_dir=config.images_dir,
+                                                              captions_file=config.captions_file,
+                                                              tokenizer_path=config.tokenizer_path,
+                                                              train_img_id_path=config.train_img_id_path,
+                                                              val_img_id_path=config.val_img_id_path,
+                                                              test_img_id_path=config.test_img_id_path,
+                                                              train_imagesid_captions_path=config.train_imagesid_captions_path,
+                                                              val_imagesid_captions_path=config.val_imagesid_captions_path,
+                                                              test_imagesid_captions_path=config.test_imagesid_captions_path,
+                                                              TRAIN_SPLIT=params.TRAIN_SPLIT,
+                                                              TEST_SPLIT=params.TEST_SPLIT,
+                                                              RANDOM_STATE=params.RANDOM_STATE)
         
-        return data_transformation_config
-    
+        return data_transformation_config    
 
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model
